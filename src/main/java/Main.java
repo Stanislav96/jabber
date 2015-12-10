@@ -1,18 +1,17 @@
 import java.util.Scanner;
 
-public class Main {
-  public static void main(String[] args) {
-    Jabber jabber = new Jabber();
+class Main {
+  public static void main(final String[] args) {
+    final Jabber jabber = new Jabber();
     while (jabber.isConnected()) {
-      Scanner scanner = new Scanner(System.in);
-      System.out.print("<< ");
+      final Scanner scanner = new Scanner(System.in);
       String req = scanner.next();
       if (req.equals("input")) {
         String user = scanner.next();
         String pass = scanner.next();
         try {
           jabber.login(user, pass);
-        } catch (Exception e) {
+        } catch (final Exception e) {
           jabber.close();
           e.printStackTrace();
           return;
@@ -23,7 +22,7 @@ public class Main {
         String user = scanner.next();
         try {
           jabber.receiver(user);
-        } catch (Exception e) {
+        } catch (final Exception e) {
           jabber.close();
           e.printStackTrace();
           return;
@@ -34,18 +33,18 @@ public class Main {
         String msg = scanner.next();
         try {
           jabber.sendMsg(msg);
-        } catch (Exception e) {
+        } catch (final Exception e) {
           jabber.close();
           e.printStackTrace();
           return;
         }
         continue;
       }
-      if (req.equals("status")) {
+      if (req.equals("presence")) {
         String status = scanner.next();
         try {
           jabber.sendStatus(status);
-        } catch (Exception e) {
+        } catch (final Exception e) {
           jabber.close();
           e.printStackTrace();
           return;
